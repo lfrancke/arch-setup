@@ -1,0 +1,26 @@
+---
+- name: Ensure required printer packages are installed
+  become: yes
+  pacman:
+    name:
+      - avahi
+      - cups
+      - cups-pdf
+      - nss-mdns
+
+- name: Enable ".local" hostname resolution
+  become: yes
+  lineinfile:
+    path: /etc/nsswitch.conf
+    regexp: '^hosts:.*'
+    line: "hosts: files mymachines myhostname mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns"
+
+- name: Ensure required services are enabled and running
+  become: yes
+  systemd:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
+  loop:
+    - avahi-daemon
+    - org.cups.cupsd

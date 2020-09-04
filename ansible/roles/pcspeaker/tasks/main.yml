@@ -1,0 +1,9 @@
+---
+- name: Ensure PC Speaker is disabled
+  become: yes
+  template:
+    src: nobeep.conf.j2
+    dest: /etc/modprobe.d/nobeep.conf
+    owner: root
+    group: root
+    mode: 0644

@@ -1,0 +1,7 @@
+---
+- name: Restart systemd-timesyncd
+  become: yes
+  systemd:
+    name: systemd-timesyncd
+    state: restarted
+    enabled: yes

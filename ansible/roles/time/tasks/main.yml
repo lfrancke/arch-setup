@@ -1,0 +1,21 @@
+---
+# TODO: This role doesn't handle the hardware clock yet
+
+- name: Ensure Time Zone is set
+  timezone:
+    name: "{{ timezone }}"
+
+- name: Ensure systemd-timesyncd has NTP servers
+  become: yes
+  lineinfile:
+    path: /etc/systemd/timesyncd.conf
+    regexp: "^#NTP="
+    line: "NTP=0.arch.pool.ntp.org 1.arch.pool.ntp.org 2.arch.pool.ntp.org 3.arch.pool.ntp.org"
+  notify: Restart systemd-timesyncd
+
+- name: Ensure systemd-timesyncd is enabled and running
+  become: yes
+  systemd:
+    name: systemd-timesyncd
+    enabled: yes
+    state: started

@@ -1,0 +1,13 @@
+{{ ansible_managed | comment }}
+
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = Scanning for pacnew and pacsave files...
+Exec = /bin/pacdiff -o
+When = PostTransaction

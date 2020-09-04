@@ -1,0 +1,9 @@
+---
+- name: Ensure wheel has passwordless sudo
+  become: true
+  template:
+    src: wheel.j2
+    dest: /etc/sudoers.d/wheel
+    owner: root
+    group: root
+    mode: 0440

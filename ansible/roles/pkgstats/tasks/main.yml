@@ -1,0 +1,13 @@
+---
+- name: Ensure pkgstats package is installed
+  become: yes
+  pacman:
+    name: pkgstats
+    state: present
+
+- name: Ensure periodic pkgstats timer is enabled and running
+  become: yes
+  systemd:
+    name: pkgstats.timer
+    enabled: yes
+    state: started

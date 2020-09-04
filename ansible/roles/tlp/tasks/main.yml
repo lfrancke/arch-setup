@@ -1,0 +1,35 @@
+---
+- name: Ensure TLP packages are installed
+  pacman:
+    name:
+      - acpi_call
+      - tlp
+      - smartmontools
+    state: present
+
+- name: Ensure TLP config is in place
+  become: yes
+  template:
+    src: user.conf.j2
+    dest: /etc/tlp.d/user.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart TLP
+
+- name: Ensure systemd-rfkill is masked
+  become: yes
+  systemd:
+    name: "{{ item }}"
+    masked: yes
+    state: stopped
+  loop:
+    - systemd-rfkill.service
+    - systemd-rfkill.socket
+
+- name: Ensure TLP is enabled and running
+  become: yes
+  systemd:
+    name: tlp
+    enabled: yes
+    state: started

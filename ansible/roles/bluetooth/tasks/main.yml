@@ -1,0 +1,27 @@
+---
+# Bluetooth headset quality is bad:
+# https://gitlab.freedesktop.org/pulseaudio/pulseaudio/-/merge_requests/227
+
+- name: Ensure Bluetooth software is installed
+  become: yes
+  pacman:
+    name:
+      - bluez
+      - bluez-utils
+      - pulseaudio-bluetooth
+
+- name: Ensure bluetooth config is correct
+  become: yes
+  template:
+    src: main.conf.j2
+    dest: /etc/bluetooth/main.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Ensure bluetooth service is enabled and running
+  become: yes
+  systemd:
+    name: bluetooth
+    enabled: yes
+    state: started

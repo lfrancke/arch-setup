@@ -1,0 +1,51 @@
+= Arch Setup
+
+== What does it do?
+
+This is a combination of shell scripts and Ansible playbooks that set up an Arch Linux installation on a Lenovo T14 laptop.
+It is meant to work in combination with a https://github.com/lfrancke/dotfiles[dotfiles] repository.
+This repository deals with all the stuff that requires root or is non-user specific.
+
+== Contents (Ansible Roles)
+
+=== aur-auto-vote
+
+This installs https://aur.archlinux.org/packages/aur-auto-vote-git/[aur-auto-vote] which is a tool to automatically vote for AUR packages.
+It install a SystemD timer that runs automatically.
+
+
+== Installation
+
+TODO: Document Ansible Vault & required fields
+
+* https://www.archlinux.org/download/[Download] a new ISO
+* Use Balena Etcher or similar to write the ISO to a USB drive
+* Boot the laptop using the USB drive and wait for the command line to appear
+* Adjust settings in `arch-env.sh` (a template is available in `arch-env.sh.template`)
+* Follow the <<bootstrap>>
+* Run `bootstrap-1.sh <IP>` on source machine
+** This reboots automatically when there are no errors
+* Login and find the IP
+* Run `bootstrap-2.sh <IP>` on source machine
+* Reboot
+* Run chezmoi dotfiles according to its documentation: https://github.com/lfrancke/dotfiles
+* Reinitialize the Chezmoi directory with the SSH protocol: `chezmoi cd && git remote set-url origin git@github.com:lfrancke/dotfiles.git`
+* Reboot
+
+.Bootstrap steps
+[#bootstrap]
+[source,shell script]
+----
+iwctl --passphrase <passphrase> station <device: wlan0> connect <SSID>
+
+passwd
+systemctl start sshd
+
+# Find IP:
+ip a
+----
+
+== Misc
+
+* To get the Fingerprint reader to work currently requires a "testing" firmware: https://github.com/nmikhailov/Validity90/issues/72#issuecomment-638258329
+* * https://wiki.archlinux.org/index.php/Firefox/Tweaks#Move_disk_cache_to_RAM

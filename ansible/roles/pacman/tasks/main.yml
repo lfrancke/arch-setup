@@ -1,0 +1,35 @@
+---
+- name: Ensure pacman hook directory exists
+  become: yes
+  file:
+    path: /etc/pacman.d/hooks
+    owner: root
+    group: root
+    state: directory
+
+- name: Ensure periodic paccache cleaner service is enabled and running
+  become: yes
+  systemd:
+    name: paccache.timer
+    enabled: yes
+    state: started
+
+- name: Ensure pacdiff hook is in place
+  become: yes
+  template:
+    src: pacdiff.hook.j2
+    dest: /etc/pacman.d/hooks/pacdiff.hook
+    owner: root
+    group: root
+    mode: 0644
+
+# This _should_ not be necessary as of GNUPG 2.1 but downloading keys failed for me when using pacman
+- name: Ensure dirmngr.conf file is in place
+  become: yes
+  template:
+    src: dirmngr.conf.j2
+    dest: /etc/pacman.d/gnupg/dirmngr.conf
+    owner: root
+    group: root
+    mode: 0644
+

@@ -1,0 +1,62 @@
+---
+- name: Ensure mkinitpio.conf is correct
+  become: yes
+  template:
+    src: mkinitcpio.conf.j2
+    dest: /etc/mkinitcpio.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Rebuild mkinitcpio
+
+- name: Ensure linux.preset is correct
+  become: yes
+  template:
+    src: linux.preset.j2
+    dest: /etc/mkinitcpio.d/linux.preset
+    owner: root
+    group: root
+    mode: 0644
+  notify: Rebuild mkinitcpio
+
+- name: Ensure linux-lts.preset is correct
+  become: yes
+  template:
+    src: linux-lts.preset.j2
+    dest: /etc/mkinitcpio.d/linux-lts.preset
+    owner: root
+    group: root
+    mode: 0644
+  notify: Rebuild mkinitcpio
+
+- name: Ensure loader.conf is in place
+  become: yes
+  template:
+    src: loader.conf.j2
+    dest: /boot/loader/loader.conf
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Find offset of swapfile
+  become: yes
+  shell: /usr/local/bin/btrfs_map_physical /var/swap/swapfile | awk '{ if($1=="0"){print $9} }' | sed "s/\.\.//g"
+  register: swapfile
+  changed_when: False
+
+- name: Find page of swapfile
+  set_fact:
+    swapfile_page: "{{ ((swapfile.stdout | int) / 4096) | int }}"
+
+- name: Ensure boot entries are in place
+  become: yes
+  template:
+    src: "{{ item }}.j2"
+    dest: /boot/loader/entries/{{ item }}
+    owner: root
+    group: root
+    mode: 0755
+  loop:
+    - arch.conf
+    - arch-lts.conf
+    - arch-fallback.conf

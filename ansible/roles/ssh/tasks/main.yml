@@ -1,0 +1,15 @@
+---
+- name: Ensure OpenSSH is installed
+  become: yes
+  pacman:
+    name: openssh
+    state: present
+
+- name: Ensure OpenSSH is enabled and running
+  become: yes
+  systemd:
+    name: sshd
+    enabled: yes
+    state: started
+
+# TODO: ssh.config / sshd.config

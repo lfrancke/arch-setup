@@ -1,0 +1,7 @@
+---
+- name: Restart iwd
+  become: yes
+  systemd:
+    name: iwd
+    state: restarted
+    enabled: yes

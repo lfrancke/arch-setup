@@ -1,0 +1,37 @@
+---
+- name: Ensure restic is installed
+  become: yes
+  pacman:
+    name: restic
+    state: present
+
+- name: Ensure restic configuration directory exists
+  become: yes
+  file:
+    path: /etc/restic
+    owner: root
+    group: root
+    state: directory
+
+- name: Ensure all required files for restic are in place
+  become: yes
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: "{{ item.mode }}"
+  loop:
+    - { src: "restic-backup.service.j2", dest: "/etc/systemd/system/restic-backup.service", mode: "0644" }
+    - { src: "restic-backup.timer.j2", dest: "/etc/systemd/system/restic-backup.timer", mode: "0644" }
+    - { src: "restic-backup.sh.j2", dest: "/usr/local/bin/restic-backup.sh", mode: "0755" }
+    - { src: "restic_env.sh.j2", dest: "/etc/restic/restic_env.sh", mode: "0600" }
+    - { src: "restic_excludes.j2", dest: "/etc/restic/restic_excludes", mode: "0644" }
+    - { src: "restic_pwd.j2", dest: "/etc/restic/restic_pwd", mode: "0600" }
+
+- name: Ensure restic timer is enabled and running
+  become: yes
+  systemd:
+    name: restic-backup.timer
+    enabled: yes
+    state: started

@@ -1,0 +1,7 @@
+---
+- name: Restart TLP
+  become: yes
+  systemd:
+    name: tlp
+    state: restarted
+    enabled: yes

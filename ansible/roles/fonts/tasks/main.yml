@@ -1,0 +1,9 @@
+---
+# TODO: I believe they are just reinstalled as dependencies of something
+- name: Ensure default fonts are removed
+  become: yes
+  pacman:
+    name:
+      - xorg-fonts-75dpi
+      - xorg-fonts-100dpi
+    state: absent

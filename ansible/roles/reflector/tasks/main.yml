@@ -1,0 +1,38 @@
+---
+- name: Ensure reflector is installed
+  become: yes
+  pacman:
+    name: reflector
+
+- name: Ensure reflector config is in place
+  become: yes
+  template:
+    src: reflector.conf.j2
+    dest: /etc/xdg/reflector/reflector.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Ensure reflector-timer service is enabled and running
+  become: yes
+  systemd:
+    name: reflector.timer
+    enabled: yes
+    state: started
+
+- name: Ensure pacman hook directory exists
+  become: yes
+  file:
+    path: /etc/pacman.d/hooks
+    owner: root
+    group: root
+    state: directory
+
+- name: Ensure pacman hook for reflector is in place
+  become: yes
+  template:
+    src: mirrorupgrade.hook.j2
+    dest: /etc/pacman.d/hooks/mirrorupgrade.hook
+    owner: root
+    group: root
+    mode: 0644

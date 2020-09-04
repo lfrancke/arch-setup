@@ -1,0 +1,36 @@
+---
+- name: Ensure snapper is installed
+  become: yes
+  pacman:
+    name: snapper
+
+- name: Ensure config files are in place
+  become: yes
+  template:
+    src: "{{ item }}.j2"
+    dest: /etc/snapper/configs/{{ item }}
+    owner: root
+    group: root
+    mode: 0644
+  loop:
+    - home
+    - root
+
+- name: Ensure config file is in place
+  become: yes
+  template:
+    src: snapper.j2
+    dest: /etc/conf.d/snapper
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Ensure snapper timer are enabled
+  become: yes
+  systemd:
+    name: snapper-timeline.timer
+    enabled: yes
+    state: started
+  loop:
+    - snapper-timeline.timer
+    - snapper-cleanup.timer

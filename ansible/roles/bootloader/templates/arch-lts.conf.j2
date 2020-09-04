@@ -1,0 +1,7 @@
+{{ ansible_managed | comment }}
+
+title   Arch Linux (LTS)
+linux   /vmlinuz-linux
+initrd  /intel-ucode.img
+initrd  /EFI/arch/initramfs-linux.img
+options cryptdevice=/dev/nvme0n1p6:cryptroot:allow-discards root=/dev/mapper/cryptroot rootflags=subvol=root resume=/dev/mapper/cryptroot resume_offset={{ swapfile_page }} quiet rw nowatchdog

@@ -1,0 +1,21 @@
+---
+- name: Ensure aur-auto-vote is installed
+  yay:
+    name: aur-auto-vote-git
+    state: present
+
+- name: Ensure aur-auto-vote service is installed
+  become: yes
+  template:
+    src: aur-auto-vote.service.j2
+    dest: /etc/systemd/system/aur-auto-vote.service
+    owner: root
+    group: root
+    mode: 0600
+
+- name: Ensure aur-auto-vote timer is enabled and running
+  become: yes
+  systemd:
+    name: aur-auto-vote.timer
+    enabled: yes
+    state: started

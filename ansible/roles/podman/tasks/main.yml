@@ -1,0 +1,43 @@
+---
+- name: Ensure pkgstats package is installed
+  become: yes
+  pacman:
+    name: podman
+    state: present
+
+- name: Ensure fuse-overlayfs is used
+  become: yes
+  lineinfile:
+    path: /etc/containers/storage.conf
+    regexp: '^mount_program.*'
+    line: mount_program = "/usr/bin/fuse-overlayfs"
+
+- name: Ensure unprivileged containers for non-root users is enabled
+  become: yes
+  sysctl:
+    name: kernel.unprivileged_userns_clone
+    value: '1'
+    state: present
+    sysctl_file: /etc/sysctl.d/99-unprivileged_containers.conf
+
+# The 'user' module in Ansible does not support this yet
+# https://github.com/ansible/ansible/issues/68199
+- name: Ensure subgid is in place
+  become: yes
+  template:
+    src: sub.j2
+    dest: /etc/subgid
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Ensure subuid is in place
+  become: yes
+  template:
+    src: sub.j2
+    dest: /etc/subuid
+    owner: root
+    group: root
+    mode: 0644
+
+# TODO: Might need a "podman system migrate" command to work around this issue: https://github.com/containers/podman/issues/3421

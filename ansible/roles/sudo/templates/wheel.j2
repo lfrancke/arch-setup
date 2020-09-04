@@ -1,0 +1,5 @@
+{{ ansible_managed | comment }}
+
+## Allow members of group wheel to execute any command without entering a password
+%wheel ALL=(ALL) NOPASSWD: ALL
+

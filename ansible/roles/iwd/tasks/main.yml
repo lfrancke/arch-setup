@@ -1,0 +1,32 @@
+---
+- name: Ensure iwd is installed
+  pacman:
+    name: iwd
+    state: present
+
+- name: Ensure iwd configuration is in place
+  become: yes
+  template:
+    src: main.conf.j2
+    dest: /etc/iwd/main.conf
+    owner: root
+    group: root
+    mode: 0644
+#  notify: Restart iwd
+# I'm not notifying the handler here because it could cut the network connection should we run this over SSH
+
+- name: Ensure regulatory domain is set
+  become: yes
+  template:
+    src: wireless-regdom.j2
+    dest: /etc/conf.d/wireless-regdom
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Ensure iwd is enabled and running
+  become: yes
+  systemd:
+    name: iwd
+    enabled: yes
+    state: started

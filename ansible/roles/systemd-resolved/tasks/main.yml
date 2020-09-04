@@ -1,0 +1,28 @@
+---
+- name: Ensure resolved.conf is in place
+  become: yes
+  template:
+    src: resolved.conf.j2
+    dest: /etc/systemd/resolved.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart systemd-resolved
+
+# If this is not done GPG will fail to retrieve any keys
+- name: Ensure resolv.conf points to the systemd-resolved stub resolver
+  become: yes
+  file:
+    src: /run/systemd/resolve/stub-resolv.conf
+    dest: /etc/resolv.conf
+    owner: root
+    group: root
+    force: yes
+    state: link
+
+- name: Ensure systemd-resolved is enabled and started
+  become: yes
+  systemd:
+    name: systemd-resolved
+    enabled: yes
+    state: started

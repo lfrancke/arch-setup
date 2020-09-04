@@ -1,0 +1,13 @@
+---
+- name: Ensure util-linux (for fstrim) is installed
+  become: yes
+  pacman:
+    name: util-linux
+    state: present
+
+- name: Ensure periodic trim service is enabled and running
+  become: yes
+  systemd:
+    name: fstrim.timer
+    enabled: yes
+    state: started

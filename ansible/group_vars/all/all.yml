@@ -1,0 +1,155 @@
+---
+aur_packages:
+  - aur-auto-vote-git
+  - autojump-git
+  - bitwarden-cli
+  - chezmoi
+  - drawio-desktop
+  - firefox-tridactyl-native
+  - google-chrome
+  - informant
+  - intellij-idea-ultimate-edition
+  - intellij-idea-ultimate-edition-jre
+  - kbd-neo
+  - kubectl-bin
+  - libinput-gestures
+  - lscolors-git
+  - polybar
+  - numix-icon-theme-git # For Dunst
+  - pacman-cleanup-hook
+  - rocketchat-client-bin
+  - siji-git # Font for the polybar example config file
+  - slack-desktop
+#  - spotify  -> This is broken as of 2020-07-29 due to a GPG issue
+  - systemd-boot-pacman-hook
+  - teams
+  - thinkfan
+  - update-notifier
+  - urxvt-resize-font-git
+  - urxvt-tabbedex
+  - visual-studio-code-bin
+  - yay
+  - zoom
+
+config_folder: /home/{{ username }}/.config
+
+hostname: lars-laptop
+
+lingering_users:
+  - "{{ username }}"
+
+locales:
+  - de_DE
+  - de_DE.UTF-8
+  - en_US
+  - en_US.UTF-8
+
+pacman_packages:
+  - acpi_call # For TLP
+  - alacritty
+  - alsa-utils
+  - ansible
+  - asp
+  - autorandr
+  - base
+  - base-devel
+  - bluez
+  - bluez-utils
+  - bspwm
+  - btrfs-progs
+  - crda
+  - compsize # To calculate BTRFS compression stats
+  - cups
+  - cups-pdf
+  - dunst
+  - earlyoom
+  - ethtool
+  - fd
+  - firefox
+  - firefox-tridactyl
+  - fuse2 # Needed for restic mount which uses fusermount and not fusermount3
+  - fzf
+  - gdb
+  - git
+  - htop
+  - intel-ucode
+  - iwd
+  - jdk-openjdk
+  - jdk8-openjdk
+  - jdk11-openjdk
+  - k9s
+  - kubectx
+  - kustomize
+  - libreoffice-fresh
+  - light
+  - linux
+  - linux-firmware
+  - linux-lts
+  - lvm2
+  - man
+  - maven
+  - ncdu
+  - neovim
+  - nethogs
+  - nodejs
+  - npm
+  - nss-mdns
+  - openssh
+  - p7zip
+  - pacman-contrib # For pacdiff
+  - pavucontrol
+  - physlock
+  - picom
+  - pkgstats
+  - podman
+  - powertop
+  - profile-sync-daemon
+  - pulseaudio
+  - pulseaudio-alsa
+  - pulseaudio-bluetooth
+  - python-gobject # Optional dependency of redshift, needed for redshift-gtk
+  - ranger
+  - redshift
+  - reflector
+  - restic
+  - ripgrep
+  - rofi
+  - rofi-calc
+  - rsync
+  - rustup
+  - shellcheck
+  - shellharden
+  - sof-firmware # Required for Audio on T14 as of 2020-07-29
+  - smartmontools # For TLP
+  - snapper
+  - snap-pac
+  - strace
+  - sxhkd
+  - sudo
+  - tcpdump
+  - terraform
+  - tlp
+  - tmux
+  - ttf-dejavu
+  - tpacpi-bat # For battery charging thresholds for TLP
+  - unzip
+  - urxvt-perls
+  - util-linux
+  - vim
+  - vlc
+  - wget
+  - wmname
+  - xf86-video-intel
+  - xsel
+  - xorg
+  - xorg-xinit
+  - zsh
+
+timezone: Europe/Berlin
+
+username: lars
+
+# "informant" is required so informant doesn't require root
+# "input" is required for libinput-gestures
+# "video" is required for the light app
+user_groups: informant,input,video,wheel

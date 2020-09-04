@@ -1,0 +1,15 @@
+---
+- name: Ensure chezmoi is installed
+  become: yes
+  yay:
+    name: chezmoi
+
+- name: Check if chezmoi has already been initialized
+  stat:
+    path: /home/{{ username }}/.local/share/chezmoi
+  register: chezmoi_stat
+
+# This does not use the SSH protocol yet because the dotfiles are the ones who bring in the required SSH key
+- name: Ensure dotfiles are installed
+  command: chezmoi init https://github.com/lfrancke/dotfiles.git
+  when: not chezmoi_stat.stat.exists

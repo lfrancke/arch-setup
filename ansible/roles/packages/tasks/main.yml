@@ -1,0 +1,20 @@
+---
+- name: Ensure informant is installed
+  yay:
+    name: informant
+    state: present
+
+- name: Ensure informant has all items marked as read
+  become: yes
+  command: informant read --all
+
+- name: Ensure pacman packages are installed
+  become: yes
+  pacman:
+    name: "{{ pacman_packages }}"
+    state: present
+
+- name: Ensure AUR packages are installed
+  yay:
+    name: "{{ aur_packages }}"
+    state: present

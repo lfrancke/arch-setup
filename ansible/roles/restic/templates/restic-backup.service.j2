@@ -1,0 +1,14 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=Restic backup
+#TODO: OnFailure
+
+[Service]
+Type=simple
+Nice=10
+ExecStart=/usr/local/bin/restic-backup.sh
+Environment="HOME=/root"
+
+[Install]
+WantedBy=default.target

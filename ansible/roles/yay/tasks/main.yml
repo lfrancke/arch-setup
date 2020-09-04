@@ -1,0 +1,23 @@
+---
+- name: Check if yay exists
+  stat:
+    path: /usr/bin/yay
+  register: yay_stat
+
+- name: Pull yay AUR package
+  git:
+    repo: "https://aur.archlinux.org/yay.git"
+    dest: /home/{{ username }}/yay
+  when: not yay_stat.stat.exists
+
+- name: Build and install yay
+  command: makepkg --noconfirm -si
+  args:
+    chdir: /home/{{ username }}/yay
+  when: not yay_stat.stat.exists
+
+- name: Ensure yay build directory is removed again
+  file:
+    name: /home/{{ username }}/yay
+    state: absent
+  when: not yay_stat.stat.exists

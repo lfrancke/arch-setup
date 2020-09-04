@@ -1,0 +1,17 @@
+---
+- name: Ensure linger directory exists
+  become: yes
+  file:
+    path: /var/lib/systemd/linger
+    owner: root
+    group: root
+
+- name: Ensure lingering is enabled for users
+  become: yes
+  file:
+    path: /var/lib/systemd/linger/{{ item }}
+    state: touch
+    owner: root
+    group: root
+    mode: 0644
+  loop: "{{ lingering_users }}"

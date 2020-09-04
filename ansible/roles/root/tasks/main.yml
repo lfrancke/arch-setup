@@ -1,0 +1,15 @@
+---
+- name: Ensure user exists
+  become: yes
+  user:
+    name: root
+    shell: /bin/zsh
+
+- name: Ensure simple .zshrc file is in place
+  become: yes
+  template:
+    src: zshrc.j2
+    dest: /root/.zshrc
+    owner: root
+    group: root
+    mode: 0644

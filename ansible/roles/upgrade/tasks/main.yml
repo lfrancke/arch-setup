@@ -1,0 +1,10 @@
+---
+- name: Ensure all pacman packages are upgraded
+  become: yes
+  pacman:
+    update_cache: yes
+    upgrade: yes
+
+- name: Ensure all yay packages are upgraded
+  yay:
+    upgrade: yes

@@ -1,0 +1,6 @@
+{{ ansible_managed | comment }}
+
+title   Arch Linux (Fallback)
+linux   /vmlinuz-linux
+initrd  /EFI/arch/initramfs-linux-fallback.img
+options cryptdevice=/dev/nvme0n1p6:cryptroot:allow-discards root=/dev/mapper/cryptroot rootflags=subvol=root resume=/dev/mapper/cryptroot resume_offset={{ swapfile_page }} quiet rw nowatchdog

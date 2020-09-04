@@ -1,0 +1,9 @@
+---
+- name: Ensure watchdog module is disabled
+  become: yes
+  template:
+    src: nowatchdog.conf.j2
+    dest: /etc/modprobe.d/nowatchdog.conf
+    owner: root
+    group: root
+    mode: 0644

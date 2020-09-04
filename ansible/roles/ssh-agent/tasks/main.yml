@@ -1,0 +1,26 @@
+---
+# The user specific things of this role are in my dotfiles
+
+- name: Ensure pam plugin exists
+  become: yes
+  get_url:
+    url: https://raw.githubusercontent.com/capocasa/systemd-user-pam-ssh/master/systemd-user-pam-ssh
+    dest: /usr/lib/systemd/systemd-user-pam-ssh
+    mode: 0755
+    owner: root
+    group: root
+
+- name: Ensure pam login file is configured
+  become: yes
+  lineinfile:
+    path: /etc/pam.d/login
+    line: auth  optional  pam_exec.so  expose_authtok /usr/lib/systemd/systemd-user-pam-ssh
+
+# TODO: This really belongs in my dotfiles instead
+- name: Ensure passphrase is in home directory
+  copy:
+    src: passphrase
+    dest: /home/{{ username }}/.ssh/passphrase
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0600

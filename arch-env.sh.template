@@ -1,0 +1,6 @@
+export HOSTNAME=
+export USER_NAME=
+export USER_PASSWORD=
+LUKS_PASSWORD=
+
+echo $LUKS_PASSWORD > lukskey

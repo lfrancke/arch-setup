@@ -1,0 +1,12 @@
+---
+- name: Ensure required locales exist
+  become: yes
+  locale_gen:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ locales }}"
+
+# For a full list of things that can be set look at "man 7 locale"
+- name: Set default locale
+  become: yes
+  command: localectl set-locale LANG={{ locale_lang }} LC_TIME={{ locale_time }}

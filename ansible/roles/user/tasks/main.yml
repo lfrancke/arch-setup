@@ -1,0 +1,14 @@
+---
+- name: Ensure user exists
+  become: yes
+  user:
+    name: "{{ username }}"
+    create_home: yes
+    group: "{{ username }}"
+    append: yes
+
+- name: Ensure user has all required groups
+  become: yes
+  user:
+    name: "{{ username }}"
+    groups: "{{ user_groups }}"

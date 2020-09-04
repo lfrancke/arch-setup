@@ -1,0 +1,70 @@
+---
+- name: Check if swapfile has already been created
+  stat:
+    path: "{{ swapfile }}"
+  register: swapfile_stat
+
+- name: Ensure swapfile is created
+  become: yes
+  command: truncate -s 0 {{ swapfile }}
+  when: not swapfile_stat.stat.exists
+
+# When this is enabled the chattr fails as of Kernel 5.8
+#- name: Ensure swapfile has compression disabled
+#  become: yes
+#  command: btrfs property set {{ swapfile }} compression none
+#  when: not swapfile_stat.stat.exists
+
+- name: Ensure swapfile has correct permissions and attributes
+  become: yes
+  file:
+    path: "{{ swapfile }}"
+    attributes: +C
+    owner: root
+    group: root
+    mode: '0600'
+
+# Creates a 50 GB swap file
+- name: Ensure swapfile has desired size
+  become: yes
+  command: dd if=/dev/zero of={{ swapfile }} bs=1M count=51200
+  when: not swapfile_stat.stat.exists
+
+- name: Ensure swapfile is formatted
+  become: yes
+  command: mkswap {{ swapfile }}
+  when: not swapfile_stat.stat.exists
+
+- name: Ensure swapfile is in /etc/fstab
+  become: yes
+  lineinfile:
+    path: /etc/fstab
+    line: "{{ swapfile }} none swap defaults 0 0"
+
+- name: Check if btrfs_map_physical has already been created
+  stat:
+    path: /usr/local/bin/btrfs_map_physical
+  register: btrfs_map_physical_stat
+
+- name: Ensure source exists
+  become: yes
+  copy:
+    src: btrfs_map_physical.c
+    dest: /usr/local/bin/btrfs_map_physical.c
+    owner: root
+    group: root
+    mode: 0644
+  when: not btrfs_map_physical_stat.stat.exists
+
+- name: Ensure btrfs_map_physical exists
+  become: yes
+  command: gcc -O2 -o /usr/local/bin/btrfs_map_physical /usr/local/bin/btrfs_map_physical.c
+  when: not btrfs_map_physical_stat.stat.exists
+
+- name: Ensure swappiness is set
+  become: yes
+  sysctl:
+    name: vm.swappiness
+    value: '5'
+    state: present
+    sysctl_file: /etc/sysctl.d/99-swappiness.conf

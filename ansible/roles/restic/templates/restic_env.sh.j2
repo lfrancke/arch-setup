@@ -1,0 +1,20 @@
+{{ ansible_managed | comment }}
+
+export B2_ACCOUNT_ID={{ restic_b2_account_id }}
+export B2_ACCOUNT_KEY={{ restic_b2_account_key }}
+
+export RESTIC_EXCLUDE_FILE=/etc/restic/restic_excludes
+export RESTIC_LOG_FILE=/var/log/restic.log
+
+export RESTIC_REPOSITORY={{ restic_repository }}
+export RESTIC_PASSWORD_FILE=/etc/restic/restic_pwd
+
+# How many backups to keep.
+RETENTION_LAST=14
+RETENTION_DAYS=7
+RETENTION_WEEKS=4
+RETENTION_MONTHS=12
+RETENTION_YEARS=3
+
+BACKUP_TAG={{ username }}-t14
+B2_CONNECTIONS=50

@@ -1,0 +1,50 @@
+---
+- hosts: all
+  module_defaults:
+    file:
+      owner: "{{ username }}"
+      group: "{{ username }}"
+    copy:
+      owner: "{{ username }}"
+      group: "{{ username }}"
+    template:
+      owner: "{{ username }}"
+      group: "{{ username }}"
+  roles:
+    - yay
+    - upgrade
+    - packages
+
+    - aur-auto-vote
+    - bluetooth
+    - bootloader
+    - chezmoi
+    - earlyoom
+    - fonts
+    - fstrim
+    - hibernate
+    - hostname
+    - iwd
+    - keymap
+    - libinput
+    - locale
+    - pacman
+    - pcspeaker
+    - pkgstats
+    - podman
+    - printer
+    - reflector
+    - restic
+    - root
+    - snapper
+    - ssh
+    - ssh-agent
+    - sudo
+    - swap
+    - systemd-logind
+    - systemd-networkd
+    - systemd-resolved
+    - time
+    - tlp
+    - user
+    - watchdog
