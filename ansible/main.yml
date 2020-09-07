@@ -36,6 +36,7 @@
     - reflector
     - restic
     - root
+    - screen-tearing
     - snapper
     - ssh
     - ssh-agent

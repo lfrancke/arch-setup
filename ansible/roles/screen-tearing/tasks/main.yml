@@ -1,0 +1,9 @@
+---
+- name: Ensure TearFree option is enabled for Intel driver
+  become: yes
+  template:
+    src: 20-intel.conf.j2
+    dest: /etc/X11/xorg.conf.d/20-intel.conf
+    owner: root
+    group: root
+    mode: 0644
