@@ -16,7 +16,7 @@
     - { src: "physlock.service.j2", dest: "/etc/systemd/system/physlock.service" }
     - { src: "sleep.conf.j2",       dest: "/etc/systemd/sleep.conf" }
     - { src: "logind.conf.j2",      dest: "/etc/systemd/logind.conf" }
-
+    - { src: "lowbat.rules.j2",     dest: "/etc/udev/rules.d/99-lowbat.rules" }
 
 # This should not be in state "started" because that'll immediately lock the screen
 - name: Ensure physlock service is enabled and running
