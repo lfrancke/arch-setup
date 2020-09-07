@@ -11,4 +11,4 @@
 
 - name: Ensure keymap for X11 is set
   become: yes
-  command: localectl set-x11-keymap de neo --no-convert
+  command: localectl set-x11-keymap de pc105 neo --no-convert
