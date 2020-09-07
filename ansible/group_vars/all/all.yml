@@ -7,6 +7,7 @@ aur_packages:
   - drawio-desktop
   - firefox-tridactyl-native
   - google-chrome
+  - homematic-manager-bin
   - informant
   - intellij-idea-ultimate-edition
   - intellij-idea-ultimate-edition-jre
@@ -14,6 +15,7 @@ aur_packages:
   - kubectl-bin
   - libinput-gestures
   - lscolors-git
+  - masterpdfeditor
   - polybar
   - numix-icon-theme-git # For Dunst
   - pacman-cleanup-hook
@@ -86,6 +88,7 @@ pacman_packages:
   - linux-firmware
   - linux-lts
   - lvm2
+  - lynx
   - man
   - maven
   - ncdu
