@@ -48,4 +48,4 @@ ip a
 == Misc
 
 * To get the Fingerprint reader to work currently requires a "testing" firmware: https://github.com/nmikhailov/Validity90/issues/72#issuecomment-638258329
-* * https://wiki.archlinux.org/index.php/Firefox/Tweaks#Move_disk_cache_to_RAM
+* https://wiki.archlinux.org/index.php/Firefox/Tweaks#Move_disk_cache_to_RAM
