@@ -141,6 +141,7 @@ pacman_packages:
   - vim
   - vlc
   - wget
+  - wireshark-qt
   - wmname
   - xf86-video-intel
   - xsel
