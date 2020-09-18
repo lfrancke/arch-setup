@@ -15,11 +15,11 @@
 #  notify: Restart iwd
 # I'm not notifying the handler here because it could cut the network connection should we run this over SSH
 
-- name: Ensure iwd configuration is in place
+- name: Ensure iwd modprobe configuration is in place
   become: yes
   template:
     src: iwlwifi.conf.j2
-    dest: /etc/modprope.d/iwlwifi.conf
+    dest: /etc/modprobe.d/iwlwifi.conf
     owner: root
     group: root
     mode: 0644
