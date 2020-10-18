@@ -3,7 +3,7 @@
   become: yes
   template:
     src: 70-synaptics.conf.j2
-    dest: /etc/X11/xorg.conf.d/70-synaptics.conf.j2
+    dest: /etc/X11/xorg.conf.d/70-synaptics.conf
     owner: root
     group: root
     mode: 0644
