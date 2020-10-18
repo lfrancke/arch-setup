@@ -5,7 +5,6 @@
     name: "{{ username }}"
     create_home: yes
     group: "{{ username }}"
-    append: yes
 
 - name: Ensure user has all required groups
   become: yes

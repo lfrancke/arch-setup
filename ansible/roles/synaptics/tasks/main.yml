@@ -1,0 +1,9 @@
+---
+- name: Ensure X11 synaptics config file is in place
+  become: yes
+  template:
+    src: 70-synaptics.conf.j2
+    dest: /etc/X11/xorg.conf.d/70-synaptics.conf.j2
+    owner: root
+    group: root
+    mode: 0644

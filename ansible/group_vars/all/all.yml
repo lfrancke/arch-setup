@@ -13,10 +13,14 @@ aur_packages:
   - intellij-idea-ultimate-edition
   - intellij-idea-ultimate-edition-jre
   - kbd-neo
+  - kubeadm
   - kubectl-bin
   - libinput-gestures
   - lscolors-git
+  - ltunify-git
+  - masterpdfeditor-free
   - polybar
+  - nasc
   - numix-icon-theme-git # For Dunst
   - pacman-cleanup-hook
   - rocketchat-client-bin
@@ -26,7 +30,6 @@ aur_packages:
   - systemd-boot-pacman-hook
   - teams
   - thinkfan
-  - update-notifier
   - urxvt-resize-font-git
   - urxvt-tabbedex
   - visual-studio-code-bin
@@ -63,6 +66,7 @@ pacman_packages:
   - compsize # To calculate BTRFS compression stats
   - cups
   - cups-pdf
+  - delve
   - docker
   - docker-compose
   - dunst
@@ -73,6 +77,7 @@ pacman_packages:
   - firefox-tridactyl
   - flameshot
   - fuse2 # Needed for restic mount which uses fusermount and not fusermount3
+  - fwupd
   - fzf
   - gdb
   - git
@@ -96,6 +101,7 @@ pacman_packages:
   - man
   - maven
   - ncdu
+  - nemo
   - neovim
   - nethogs
   - newsboat
@@ -111,6 +117,7 @@ pacman_packages:
   - pavucontrol
   - physlock
   - picom
+  - pinta
   - pkgstats
   - podman
   - powertop
@@ -129,6 +136,7 @@ pacman_packages:
   - rsync
   - rust-analyzer
   - rustup
+  - sane
   - shellcheck
   - shellharden
   - sof-firmware # Required for Audio on T14 as of 2020-07-29
@@ -153,10 +161,13 @@ pacman_packages:
   - wget
   - wireshark-qt
   - wmname
+  - xf86-input-synaptics
   - xf86-video-intel
   - xsel
   - xorg
   - xorg-xinit
+  - zathura
+  - zathura-pdf-mupdf
   - zsh
 
 timezone: Europe/Berlin

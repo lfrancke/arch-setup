@@ -12,8 +12,8 @@
       group: "{{ username }}"
   roles:
     - yay
-    - upgrade
-    - packages
+#    - upgrade
+#    - packages
 
     - aur-auto-vote
     - bluetooth
@@ -26,7 +26,7 @@
     - hostname
     - iwd
     - keymap
-    - libinput
+#    - libinput -> switched to synaptics
     - locale
     - pacman
     - pcspeaker
@@ -42,6 +42,7 @@
     - ssh-agent
     - sudo
     - swap
+    - synaptics
     - systemd-logind
     - systemd-networkd
     - systemd-resolved
