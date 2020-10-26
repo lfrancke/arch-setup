@@ -34,6 +34,7 @@ aur_packages:
   - urxvt-tabbedex
   - visual-studio-code-bin
   - yay
+  - yourkit
   - zoom
 
 config_folder: /home/{{ username }}/.config
@@ -81,7 +82,9 @@ pacman_packages:
   - fzf
   - gdb
   - git
+  - hcloud
   - htop
+  - hunspell-de
   - intel-gpu-tools
   - intel-ucode
   - iwd
@@ -145,6 +148,7 @@ pacman_packages:
   - snap-pac
   - strace
   - sxhkd
+  - subversion
   - sudo
   - tcpdump
   - terraform
@@ -166,6 +170,7 @@ pacman_packages:
   - xsel
   - xorg
   - xorg-xinit
+  - youtube-dl
   - zathura
   - zathura-pdf-mupdf
   - zsh
