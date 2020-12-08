@@ -1,7 +1,7 @@
 ---
 aur_packages:
   - aur-auto-vote-git
-  - autojump-git
+  - autojump-rs
   - bitwarden-cli
   - chezmoi
   - drawio-desktop
@@ -63,6 +63,7 @@ pacman_packages:
   - bluez-utils
   - bspwm
   - btrfs-progs
+  - calibre
   - crda
   - compsize # To calculate BTRFS compression stats
   - cups
