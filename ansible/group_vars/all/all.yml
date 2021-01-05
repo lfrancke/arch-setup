@@ -26,7 +26,7 @@ aur_packages:
   - rocketchat-client-bin
   - siji-git # Font for the polybar example config file
   - slack-desktop
-#  - spotify  -> This is broken as of 2020-07-29 due to a GPG issue
+  - spotify
   - systemd-boot-pacman-hook
   - teams
   - thinkfan
@@ -96,6 +96,7 @@ pacman_packages:
   - kubectx
   - kustomize
   - libreoffice-fresh
+  - libvirt
   - light
   - linux
   - linux-firmware
@@ -116,6 +117,7 @@ pacman_packages:
   - openjdk8-src
   - openjdk11-src
   - openssh
+  - openvpn
   - p7zip
   - pacman-contrib # For pacdiff
   - pavucontrol
@@ -130,6 +132,7 @@ pacman_packages:
   - pulseaudio-alsa
   - pulseaudio-bluetooth
   - python-gobject # Optional dependency of redshift, needed for redshift-gtk
+  - qemu
   - ranger
   - redshift
   - reflector
@@ -162,6 +165,7 @@ pacman_packages:
   - util-linux
   - veracrypt
   - vim
+  - virt-manager
   - vlc
   - wget
   - wireshark-qt
@@ -183,4 +187,4 @@ username: lars
 # "informant" is required so informant doesn't require root
 # "input" is required for libinput-gestures
 # "video" is required for the light app
-user_groups: docker,informant,input,video,wheel
+user_groups: docker,informant,input,libvirt,video,wheel

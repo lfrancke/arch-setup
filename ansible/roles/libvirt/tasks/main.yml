@@ -1,0 +1,21 @@
+---
+- name: Ensure libvirt is installed
+  pacman:
+    name: libvirt
+    state: present
+
+- name: Ensure libvirtd config file is in place
+  become: yes
+  template:
+    src: libvirtd.conf.j2
+    dest: /etc/libvirt/libvirtd.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Ensure libvirt daemon is running enabled and running
+  become: yes
+  systemd:
+    name: libvirtd
+    enabled: yes
+    state: started

@@ -26,7 +26,8 @@
     - hostname
     - iwd
     - keymap
-#    - libinput -> switched to synaptics
+    - libvirt
+    - libinput
     - locale
     - pacman
     - pcspeaker
@@ -42,7 +43,7 @@
     - ssh-agent
     - sudo
     - swap
-    - synaptics
+#    - synaptics -> using libinput
     - systemd-logind
     - systemd-networkd
     - systemd-resolved
