@@ -1,7 +1,14 @@
 ---
-- name: Ensure libvirt is installed
+# If there are networking issues: https://wiki.libvirt.org/page/Networking
+
+- name: Ensure libvirt and required packages are installed
   pacman:
-    name: libvirt
+    name:
+      - ebtables
+      - dnsmasq
+      - libvirt
+      - qemu
+      - virt-manager
     state: present
 
 - name: Ensure libvirtd config file is in place

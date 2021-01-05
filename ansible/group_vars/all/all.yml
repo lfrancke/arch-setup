@@ -69,10 +69,12 @@ pacman_packages:
   - cups
   - cups-pdf
   - delve
+  - dnsmasq
   - docker
   - docker-compose
   - dunst
   - earlyoom
+  - ebtables
   - ethtool
   - fd
   - firefox
