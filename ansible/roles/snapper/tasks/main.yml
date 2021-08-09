@@ -28,7 +28,7 @@
 - name: Ensure snapper timer are enabled
   become: yes
   systemd:
-    name: snapper-timeline.timer
+    name: "{{ item }}"
     enabled: yes
     state: started
   loop:

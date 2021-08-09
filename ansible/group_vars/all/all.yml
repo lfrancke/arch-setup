@@ -3,7 +3,7 @@ aur_packages:
   - aur-auto-vote-git
   - autojump-rs
   - bitwarden-cli
-  - chezmoi
+  - clion
   - drawio-desktop
   - f5vpn
   - firefox-tridactyl-native
@@ -12,18 +12,19 @@ aur_packages:
   - informant
   - intellij-idea-ultimate-edition
   - intellij-idea-ultimate-edition-jre
-  - kbd-neo
-  - kubeadm
+  - k3s-bin
+  - krew-bin
+  - kubeadm-bin
   - kubectl-bin
   - libinput-gestures
   - lscolors-git
   - ltunify-git
   - masterpdfeditor-free
-  - polybar
-  - nasc
   - numix-icon-theme-git # For Dunst
+  - obsidian-appimage
+  - openvpn-update-systemd-resolved
   - pacman-cleanup-hook
-  - rocketchat-client-bin
+  - polybar
   - siji-git # Font for the polybar example config file
   - slack-desktop
   - spotify
@@ -56,19 +57,23 @@ pacman_packages:
   - alsa-utils
   - ansible
   - asp
+  - autoconf
   - autorandr
   - base
   - base-devel
+  - binutils
   - bluez
   - bluez-utils
   - bspwm
   - btrfs-progs
   - calibre
-  - crda
+  - chezmoi
   - compsize # To calculate BTRFS compression stats
+  - crda
   - cups
   - cups-pdf
   - delve
+  - discord
   - dnsmasq
   - docker
   - docker-compose
@@ -76,7 +81,9 @@ pacman_packages:
   - earlyoom
   - ebtables
   - ethtool
+  - fakeroot
   - fd
+  - file
   - firefox
   - firefox-tridactyl
   - flameshot
@@ -85,6 +92,8 @@ pacman_packages:
   - fzf
   - gdb
   - git
+  - go
+  - grep
   - hcloud
   - htop
   - hunspell-de
@@ -92,11 +101,13 @@ pacman_packages:
   - intel-ucode
   - iwd
   - jdk-openjdk
-  - jdk8-openjdk
   - jdk11-openjdk
+  - jdk8-openjdk
   - k9s
+  - kbd
   - kubectx
   - kustomize
+  - lib32-vulkan-intel
   - libreoffice-fresh
   - libvirt
   - light
@@ -113,11 +124,12 @@ pacman_packages:
   - nethogs
   - newsboat
   - nodejs
+  - notepadqq
   - npm
   - nss-mdns
   - openjdk-src
-  - openjdk8-src
   - openjdk11-src
+  - openjdk8-src
   - openssh
   - openvpn
   - p7zip
@@ -148,20 +160,22 @@ pacman_packages:
   - sane
   - shellcheck
   - shellharden
-  - sof-firmware # Required for Audio on T14 as of 2020-07-29
   - smartmontools # For TLP
-  - snapper
   - snap-pac
+  - snapper
+  - sof-firmware # Required for Audio on T14 as of 2020-07-29
+  - steam
   - strace
-  - sxhkd
   - subversion
   - sudo
+  - sxhkd
+  - systemd-resolvconf
   - tcpdump
   - terraform
   - tlp
   - tmux
-  - ttf-dejavu
   - tpacpi-bat # For battery charging thresholds for TLP
+  - ttf-dejavu
   - unzip
   - urxvt-perls
   - util-linux
@@ -169,14 +183,17 @@ pacman_packages:
   - vim
   - virt-manager
   - vlc
+  - vulkan-intel
   - wget
+  - wireguard-tools
   - wireshark-qt
   - wmname
+  - xf86-input-wacom
   - xf86-input-synaptics
   - xf86-video-intel
-  - xsel
   - xorg
   - xorg-xinit
+  - xsel
   - youtube-dl
   - zathura
   - zathura-pdf-mupdf

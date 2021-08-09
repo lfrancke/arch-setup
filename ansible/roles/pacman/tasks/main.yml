@@ -33,3 +33,11 @@
     group: root
     mode: 0644
 
+- name: Ensure pacman.conf.j2 file is in place
+  become: yes
+  template:
+    src: pacman.conf.j2
+    dest: /etc/pacman.conf
+    owner: root
+    group: root
+    mode: 0644
