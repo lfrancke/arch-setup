@@ -1,0 +1,7 @@
+---
+- name: Ensure systemd-oomd service is enabled and running
+  become: yes
+  systemd:
+    name: systemd-oomd
+    enabled: yes
+    state: started

@@ -78,7 +78,6 @@ pacman_packages:
   - docker
   - docker-compose
   - dunst
-  - earlyoom
   - ebtables
   - ethtool
   - fakeroot

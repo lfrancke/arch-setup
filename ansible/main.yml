@@ -19,7 +19,6 @@
     - bluetooth
     - bootloader
     - chezmoi
-    - earlyoom
     - fonts
     - fstrim
     - hibernate
@@ -46,6 +45,7 @@
 #    - synaptics -> using libinput
     - systemd-logind
     - systemd-networkd
+    - systemd-oomd
     - systemd-resolved
     - time
     - tlp
