@@ -72,7 +72,7 @@ PairableTimeout = 180
 # Possible values: "off", "device", "network"
 # "network" option not supported currently
 # Defaults to "off"
-# Privacy = off
+#Privacy = off
 
 # Specify the policy to the JUST-WORKS repairing initiated by peer
 # Possible values: "never", "confirm", "always"
@@ -88,7 +88,15 @@ PairableTimeout = 180
 # profile is connected. Defaults to true.
 #RefreshDiscovery = true
 
-# Enables experimental features and interfaces.
+# Enables experimental features and interfaces, alternatively a list of UUIDs
+# can be given.
+# Possible values: true,false,<UUID List>
+# Possible UUIDS:
+# d4992530-b9ec-469f-ab01-6c481c47da1c (BlueZ Experimental Debug)
+# 671b10b5-42c0-4696-9227-eb28d1b049d6 (BlueZ Experimental Simultaneous Central and Peripheral)
+# 15c0a148-c273-11ea-b3de-0242ac130004 (BlueZ Experimental LL privacy)
+# 330859bc-7506-492d-9370-9a6f0614037f (BlueZ Experimental Bluetooth Quality Report)
+# a6695ace-ee7f-4fb9-881a-5fac66c629af (BlueZ Experimental Offload Codecs)
 # Defaults to false.
 #Experimental = false
 
@@ -226,7 +234,7 @@ PairableTimeout = 180
 # timeout). The policy plugin should contain a sane set of values by
 # default, but this list can be overridden here. By setting the list to
 # empty the reconnection feature gets disabled.
-#ReconnectUUIDs=00001112-0000-1000-8000-00805f9b34fb,0000111f-0000-1000-8000-00805f9b34fb,0000110a-0000-1000-8000-00805f9b34fb
+#ReconnectUUIDs=00001112-0000-1000-8000-00805f9b34fb,0000111f-0000-1000-8000-00805f9b34fb,0000110a-0000-1000-8000-00805f9b34fb,0000110b-0000-1000-8000-00805f9b34fb
 
 # ReconnectAttempts define the number of attempts to reconnect after a link
 # lost. Setting the value to 0 disables reconnecting feature.
